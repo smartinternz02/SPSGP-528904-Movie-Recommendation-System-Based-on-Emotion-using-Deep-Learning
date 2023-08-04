@@ -1,0 +1,115 @@
+<html>
+<head>
+<style>
+.myDiv {
+  position:relative;
+  top: 30;
+  width: 520;
+  height: 150;
+  margin: auto;
+  background-color: white;
+  text-align: center;
+  align: center;
+}
+body {
+  background-color:lightblue;
+}
+
+.bDiv{
+    position: relative;
+    top:50;
+    width:520;
+    height: 1800;
+    margin: auto;
+    background-color: white;
+    text-align: center;
+    align: center;
+
+
+  
+}
+.a1{
+a:link {
+  color:  #87CEEB; 
+  text-decoration: none; 
+}
+
+
+a:hover {
+color: #ff4500; 
+	
+  text-decoration: underline; 
+}
+
+a:visited {
+  color:  #87CEEB; 
+}
+
+
+a:active {
+  color: #ff4500; 
+}
+
+
+}
+</style>
+
+
+</head>
+<body>
+
+<div class="myDiv" align="center" >
+<p><b>Select an emotion:</b></p>
+<form action="/predict" method="POST"  >
+  <input type="radio" id="html" name="emotion" value="Happy">
+  <label for="happy"><img src="static/img/happy.jpg" width="50" height="50"></label>
+
+  <input type="radio" id="html" name="emotion" value="Sad">
+  <label for="sad"><img src="static/img/sad.jpg" width="50" height="50"></label>
+
+  <input type="radio" id="html" name="emotion" value="Angry">
+  <label for="angry"><img src="static/img/angry.jpg" width="50" height="50"></label>
+
+  <input type="radio" id="html" name="emotion" value="Disgusting">
+  <label for="disgust"><img src="static/img/disgust.png" width="50" height="50"></label>
+
+  <input type="radio" id="html" name="emotion" value="Thinking">
+  <label for="think"><img src="static/img/think.png" width="50" height="50"></label>
+  <br>
+ <input type="submit" value="Submit">
+</form>
+</div>
+<div class="bDiv">
+
+
+<br>
+{% for data_element in data %}
+{% if data_element | length == 1 %}
+{% if data_element[0]=="Happy" %}
+<h2 style="text-align:center;color: #008000;">Top 50 MOVIE RECOMMENDATIONS FOR<h2>
+<h2 style="text-align:center;color: #008000;">{{data_element[0]}} Mood<h2>
+{% elif data_element[0]=="Sad" %}
+<h2 style="text-align:center;color: #808080;">Top 50 MOVIE RECOMMENDATIONS FOR<h2>
+<h2 style="text-align:center;color: #808080;">{{data_element[0]}} Mood<h2>
+{% elif data_element[0]=="Angry" %}
+<h2 style="text-align:center;color: #B22222;">Top 50 MOVIE RECOMMENDATIONS FOR<h2>
+<h2 style="text-align:center;color: #B22222;">{{data_element[0]}} Mood<h2>
+{% elif data_element[0]=="Disgusting" %}
+<h2 style="text-align:center;color:  #964B00;">Top 50 MOVIE RECOMMENDATIONS FOR<h2>
+<h2 style="text-align:center;color:  #964B00;">{{data_element[0]}} Mood<h2>
+{% elif data_element[0]=="Thinking" %}
+<h2 style="text-align:center;color: indigo;">Top 50 MOVIE RECOMMENDATIONS FOR<h2>
+<h2 style="text-align:center;color: indigo;">{{data_element[0]}} Mood<h2>
+{% endif%}
+{% else %}
+<h4>
+<a style="color: purple; text-decoration:None;" href="{{data_element[1]}}" target="_blank">
+{{data_element[0]}}
+</a><br>
+</h4>
+{% endif %}
+{% endfor %}
+
+</div>
+</body>
+</html>
